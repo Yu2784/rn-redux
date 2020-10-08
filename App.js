@@ -5,14 +5,6 @@ import { createStore } from "redux";
 import Counter from "./src/component/Counter";
 import { Provider } from "react-redux";
 
-const initialState = {
-  counter: 0,
-};
-
-const reducer = (state = initialState) => {
-  return state;
-};
-
 const store = createStore(reducer);
 
 const App = () => {
