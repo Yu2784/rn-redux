@@ -1,11 +1,9 @@
 import { StatusBar } from "expo-status-bar";
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
-import { createStore } from "redux";
 import Counter from "./src/component/Counter";
 import { Provider } from "react-redux";
-
-const store = createStore(reducer);
+import store from "./src/store";
 
 const App = () => {
   return (

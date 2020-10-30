@@ -1,31 +1,23 @@
 import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import { connect } from "react-redux";
+import { increaseCounter, decreaseCounter } from "../actions/counter";
 
-const Counter = () => {
-  const [counter, setCounter] = useState(0);
-
-  const increaseCounter = () => {
-    setCounter(counter + 1);
-  };
-
-  const decreaseCounter = () => {
-    setCounter(counter - 1);
-  };
-
+const Counter = ({ counter, increaseCounter, decreaseCounter }) => {
   return (
     <View style={styles.actions}>
       <TouchableOpacity
         onPress={() => {
-          increaseCounter();
+          increaseCounter(counter);
         }}
       >
         <Text style={styles.text}>Increase</Text>
       </TouchableOpacity>
-      <Text style={styles.text}>{counter}</Text>
+      <Text style={styles.text}>{counter.counter}</Text>
       <TouchableOpacity
         onPress={() => {
-          decreaseCounter();
+          decreaseCounter(counter);
         }}
       >
         <Text style={styles.text}>Decrease</Text>
@@ -33,6 +25,14 @@ const Counter = () => {
     </View>
   );
 };
+
+const mapStateToProps = (state) => ({
+  counter: state.counter,
+});
+
+export default connect(mapStateToProps, { increaseCounter, decreaseCounter })(
+  Counter
+);
 
 const styles = StyleSheet.create({
   actions: {
@@ -44,5 +44,3 @@ const styles = StyleSheet.create({
     fontSize: 20,
   },
 });
-
-export default Counter;
