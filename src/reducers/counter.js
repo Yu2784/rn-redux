@@ -10,11 +10,13 @@ export default reducer = (state = initialState, action) => {
   switch (type) {
     case INCREASE_COUNTER:
       return {
-        counter: state.counter + 1,
+        ...state,
+        counter: payload,
       };
     case DECREASE_COUNTER:
       return {
-        counter: state.counter - 1,
+        ...state,
+        counter: payload,
       };
     default:
       return state;

@@ -5,11 +5,13 @@ import { connect } from "react-redux";
 import { increaseCounter, decreaseCounter } from "../actions/counter";
 
 const Counter = ({ counter, increaseCounter, decreaseCounter }) => {
+  // console.log("main", counter.counter);
   return (
     <View style={styles.actions}>
       <TouchableOpacity
         onPress={() => {
-          increaseCounter(counter);
+          // console.log("+", counter.counter);
+          increaseCounter(counter.counter);
         }}
       >
         <Text style={styles.text}>Increase</Text>
@@ -17,7 +19,8 @@ const Counter = ({ counter, increaseCounter, decreaseCounter }) => {
       <Text style={styles.text}>{counter.counter}</Text>
       <TouchableOpacity
         onPress={() => {
-          decreaseCounter(counter);
+          // console.log("-", counter.counter);
+          decreaseCounter(counter.counter);
         }}
       >
         <Text style={styles.text}>Decrease</Text>
