@@ -11,16 +11,16 @@ const Counter = ({ counter, increaseCounter, decreaseCounter }) => {
       <TouchableOpacity
         onPress={() => {
           // console.log("+", counter.counter);
-          increaseCounter(counter.counter);
+          increaseCounter(counter);
         }}
       >
         <Text style={styles.text}>Increase</Text>
       </TouchableOpacity>
-      <Text style={styles.text}>{counter.counter}</Text>
+      <Text style={styles.text}>{counter}</Text>
       <TouchableOpacity
         onPress={() => {
           // console.log("-", counter.counter);
-          decreaseCounter(counter.counter);
+          decreaseCounter(counter);
         }}
       >
         <Text style={styles.text}>Decrease</Text>
@@ -30,7 +30,7 @@ const Counter = ({ counter, increaseCounter, decreaseCounter }) => {
 };
 
 const mapStateToProps = (state) => ({
-  counter: state.counter,
+  counter: state.counter.counterReducer,
 });
 
 export default connect(mapStateToProps, { increaseCounter, decreaseCounter })(

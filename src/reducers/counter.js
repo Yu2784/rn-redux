@@ -1,7 +1,7 @@
 import { INCREASE_COUNTER, DECREASE_COUNTER } from "../actions/types";
 
 const initialState = {
-  counter: 0,
+  counterReducer: 0,
 };
 
 export default reducer = (state = initialState, action) => {
@@ -10,13 +10,11 @@ export default reducer = (state = initialState, action) => {
   switch (type) {
     case INCREASE_COUNTER:
       return {
-        ...state,
-        counter: payload,
+        counterReducer: payload,
       };
     case DECREASE_COUNTER:
       return {
-        ...state,
-        counter: payload,
+        counterReducer: payload,
       };
     default:
       return state;
