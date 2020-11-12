@@ -11,17 +11,31 @@ import {
 } from "react-native";
 import { connect } from "react-redux";
 import { loginWithEmail } from '../actions/auth'
+import firebase from '../config'
 
 const Login = ({ loginWithEmail }) => {
     const [userEmail, setUserEmail] = useState("");
     const [userPassword, setUserPassword] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
 
     useEffect(() => {
         setTimeout(() => {
             setErrorMessage("");
         }, 7000);
     });
+
+    useEffect(() => {
+        firebase.auth().onAuthStateChanged(onAuthStateChanged);
+    }, []);
+
+    const onAuthStateChanged = (user) => {
+        if (!!user) {
+            console.log("True")
+            setIsAuthenticated(true);
+        }
+
+    };
 
     const emailInputHandler = (input) => {
         setUserEmail(input);
@@ -42,7 +56,7 @@ const Login = ({ loginWithEmail }) => {
         <Text style={{ fontSize: 30 }}>Login</Text>
       </View>
 
-      <Text style={styles.errMsg}>{errorMessage}</Text>
+      <Text style={styles.errMsg}>{isAuthenticated}</Text>
 
       <View style={styles.input}>
         <TextInput
@@ -70,6 +84,20 @@ const Login = ({ loginWithEmail }) => {
           style={{ height: 100 }}
         />
       </View>
+
+      <View style={styles.buttonContainer}>
+        <Button
+          title="Logout"
+          onPress={() =>{
+            console.log("Logout")
+            firebase.auth().signOut()
+            }}
+          rounded
+          color="#c76da2"
+          style={{ height: 100 }}
+        />
+      </View>
+
 
       <View
         style={{
