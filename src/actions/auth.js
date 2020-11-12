@@ -10,7 +10,6 @@ export const loginWithEmail = (email, password) => async dispatch => {
             .then(() => {
                 console.log("LOGIN_SUCCESS")
                 dispatch({ type: LOGIN_SUCCESS });
-                firebase.auth().signOut()
             })
 
             .catch(() => {
